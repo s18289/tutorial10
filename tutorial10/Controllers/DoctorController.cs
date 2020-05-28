@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using tutorial10.Models;
+using tutorial10.Services;
 
 namespace tutorial10.Controllers
 {
@@ -11,26 +13,33 @@ namespace tutorial10.Controllers
     [ApiController]
     public class DoctorController : ControllerBase
     {
+
+        public readonly IDbService _service;
+        public DoctorController(IDbService service)
+        {
+            _service = service;
+        }
+
         [HttpGet("/get/doctor/{id}")]
         public IActionResult GetDoctorData(int id)
         {
-            return Ok();
+            return Ok(_service.GetDoctorData(id));
         }
 
         [HttpPost]
-        public IActionResult AddNewDoctor()
+        public IActionResult AddNewDoctor(Doctor doctor)
         {
-            return Ok();
+            return _service.AddNewDoctor(doctor);
         }
-        [HttpPost("/modify/doctor/data/{id}")]
-        public IActionResult ModifyDoctorData(int id)
+        [HttpPost("/modify/doctor/data")]
+        public IActionResult ModifyDoctorData(int id, string email)
         {
-            return Ok();
+            return _service.ModifyDoctorData(id, email);
         }
         [HttpDelete("/delete/doctor/{id}")]
         public IActionResult DeleteDoctor(int id)
         {
-            return ok();
+            return _service.DeleteDoctor(id);
         }
     }
 }
