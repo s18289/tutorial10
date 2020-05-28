@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tutorial10.Configuration;
+using tutorial10.Controllers;
 
 namespace tutorial10.Models
 {
@@ -20,6 +22,16 @@ namespace tutorial10.Models
             :base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new PatientConfiguration());
+            modelBuilder.ApplyConfiguration(new DoctorConfiguration());
+            modelBuilder.ApplyConfiguration(new MedicamentConfiguration());
+            modelBuilder.ApplyConfiguration(new PrescriptionConfiguration());
+            modelBuilder.ApplyConfiguration(new Prescription_MedicamentConfiguration());
         }
     }
 }

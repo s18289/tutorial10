@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace tutorial10.Models
 {
-    public class Prescription
+    public partial class Prescription
     {
-        [Key]
+        public Prescription()
+        {
+            Prescription_Medicament = new HashSet<Prescription_Medicament>();
+        }
         public int IdPrescription { get; set; }
         public DateTime Date { get; set; }
         public DateTime DueDate { get; set; }
-
-        [ForeignKey("Patient")]
         public int IdPatient { get; set; }
-
-        [ForeignKey("Doctor")]
         public int IdDoctor { get; set; }
 
-        public virtual Patient IdPatientNavigation { get; set; }
         public virtual Doctor IdDoctorNavigation { get; set; }
+        public virtual Patient IdPatientNavigation { get; set; }
+        public virtual ICollection<Prescription_Medicament> Prescription_Medicament { get; set; }
     }
 }
