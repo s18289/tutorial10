@@ -9,7 +9,7 @@ using tutorial10.Models;
 namespace tutorial10.Configuration
 {
 
-    public class Perscription_MedicamentConfiguration : IEntityTypeConfiguration<Prescription_Medicament>
+    public class Prescription_MedicamentConfiguration : IEntityTypeConfiguration<Prescription_Medicament>
     {
         public void Configure(EntityTypeBuilder<Prescription_Medicament> builder)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tutorial10.Models
 {
-    public class Doctor
+    public partial class Doctor
     {
         public Doctor()
         {

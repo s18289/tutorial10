@@ -9,11 +9,28 @@ using tutorial10.Models;
 namespace tutorial10.Configuration
 {
 
-    public class PerscriptionConfiguration : IEntityTypeConfiguration<PatientContext>
+    public class PrescriptionConfiguration : IEntityTypeConfiguration<Prescription>
     {
-        public void Configure(EntityTypeBuilder<PatientContext> builder)
+        public void Configure(EntityTypeBuilder<Prescription> builder)
         {
+            builder.HasKey(e => e.IdPrescription)
+                        .HasName("Prescription_pk");
 
+            builder.Property(e => e.Date).HasColumnType("date");
+
+            builder.Property(e => e.DueDate).HasColumnType("date");
+
+            builder.HasOne(d => d.IdDoctorNavigation)
+                        .WithMany(p => p.Prescription)
+                        .HasForeignKey(d => d.IdDoctor)
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("Prescription_Doctor");
+
+            builder.HasOne(d => d.IdPatientNavigation)
+                        .WithMany(p => p.Prescription)
+                        .HasForeignKey(d => d.IdPatient)
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("Prescription_Patient");
         }
     }
 }

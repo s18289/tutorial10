@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace tutorial10.Models
 {
-    public class Medicament
+    public partial class Medicament
     {
         public Medicament()
         {
