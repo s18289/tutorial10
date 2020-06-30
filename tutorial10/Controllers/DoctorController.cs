@@ -31,7 +31,7 @@ namespace tutorial10.Controllers
         {
             return _service.AddNewDoctor(doctor);
         }
-        [HttpPost("/modify/doctor/data")]
+        [HttpPut("/modify/doctor/data")]
         public IActionResult ModifyDoctorData(int id, string email)
         {
             return _service.ModifyDoctorData(id, email);
